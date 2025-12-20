@@ -31,4 +31,10 @@ export default ts.config(
 			},
 		},
 	},
+	{
+		files: ["**/components/ui/button/button.svelte"],
+		rules: {
+			"svelte/no-navigation-without-resolve": "off",
+		},
+	},
 );
