@@ -92,6 +92,11 @@
 </script>
 
 <div class="container mx-auto max-w-4xl p-4 space-y-6">
+  <header class="text-center">
+    <h1 class="text-3xl font-bold">Tales of the Arabian Nights</h1>
+    <p class="text-muted-foreground">Encounter Lookup</p>
+  </header>
+
   <Card.Root class="max-w-md mx-auto">
     <Card.Header>
       <Card.Title>Encounter Lookup</Card.Title>
