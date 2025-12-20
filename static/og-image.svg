@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap');
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#f5e6c8"/>
+
+  <!-- Top banner -->
+  <rect width="1200" height="80" fill="#3d5a3d"/>
+  <rect y="80" width="1200" height="4" fill="#c9a227"/>
+
+  <!-- Bottom banner -->
+  <rect y="546" width="1200" height="4" fill="#c9a227"/>
+  <rect y="550" width="1200" height="80" fill="#3d5a3d"/>
+
+
+  <!-- Crescent moon - two circles -->
+  <circle cx="520" cy="280" r="80" fill="#3d5a3d"/>
+  <circle cx="555" cy="280" r="65" fill="#f5e6c8"/>
+
+  <!-- Star -->
+  <polygon points="660,220 675,260 720,265 688,295 696,340 660,315 624,340 632,295 600,265 645,260" fill="#3d5a3d"/>
+
+  <!-- Title -->
+  <text x="600" y="480" text-anchor="middle" font-family="Inter, sans-serif" font-size="48" fill="#2d1810" font-weight="bold">Tales of the Arabian Nights</text>
+  <text x="600" y="530" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" fill="#5c4033">Encounter Lookup Tool</text>
+</svg>
