@@ -2,7 +2,7 @@
   import * as Card from "$lib/components/ui/card";
   import { Input } from "$lib/components/ui/input";
   import { Label } from "$lib/components/ui/label";
-  import * as Select from "$lib/components/ui/select";
+  import * as ToggleGroup from "$lib/components/ui/toggle-group";
   import { Button } from "$lib/components/ui/button";
   import * as Table from "$lib/components/ui/table";
   import { getEncounter } from "$lib/data/encounters";
@@ -116,16 +116,11 @@
 
       <div class="space-y-2">
         <Label>Dice Roll <span class="text-destructive">*</span></Label>
-        <Select.Root type="single" bind:value={diceRoll} required>
-          <Select.Trigger class="w-full">
-            {diceRoll ?? "Select dice roll"}
-          </Select.Trigger>
-          <Select.Content>
-            {#each [1, 2, 3, 4, 5, 6] as num}
-              <Select.Item value={String(num)}>{num}</Select.Item>
-            {/each}
-          </Select.Content>
-        </Select.Root>
+        <ToggleGroup.Root type="single" bind:value={diceRoll} variant="outline" class="w-full justify-between">
+          {#each [1, 2, 3, 4, 5, 6] as num}
+            <ToggleGroup.Item value={String(num)} class="flex-1 bg-muted border border-border">{num}</ToggleGroup.Item>
+          {/each}
+        </ToggleGroup.Root>
       </div>
 
       <div class="space-y-2">
@@ -141,16 +136,11 @@
 
       <div class="space-y-2">
         <Label>Destiny Bonus</Label>
-        <Select.Root type="single" bind:value={destinyBonus}>
-          <Select.Trigger class="w-full">
-            {destinyBonus}
-          </Select.Trigger>
-          <Select.Content>
-            <Select.Item value="0">0</Select.Item>
-            <Select.Item value="1">1</Select.Item>
-            <Select.Item value="2">2</Select.Item>
-          </Select.Content>
-        </Select.Root>
+        <ToggleGroup.Root type="single" bind:value={destinyBonus} variant="outline" class="w-full justify-between">
+          <ToggleGroup.Item value="0" class="flex-1 bg-muted border border-border">0</ToggleGroup.Item>
+          <ToggleGroup.Item value="1" class="flex-1 bg-muted border border-border">1</ToggleGroup.Item>
+          <ToggleGroup.Item value="2" class="flex-1 bg-muted border border-border">2</ToggleGroup.Item>
+        </ToggleGroup.Root>
       </div>
 
       <Button class="w-full" onclick={handleSubmit}>View Reactions</Button>
