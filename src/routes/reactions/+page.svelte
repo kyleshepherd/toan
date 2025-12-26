@@ -1,13 +1,39 @@
 <script lang="ts">
-	import { matrices, type Matrix } from "$lib/data/matrices";
+	import { page } from "$app/stores";
+	import { goto } from "$app/navigation";
+	import { matrices, type Matrix, type MatrixName } from "$lib/data/matrices";
 	import * as Tabs from "$lib/components/ui/tabs";
 	import * as Card from "$lib/components/ui/card";
 	import { Button } from "$lib/components/ui/button";
+	import StoryDialog from "$lib/components/StoryDialog.svelte";
+	import { createStoryDialogState } from "$lib/stores/storyDialog.svelte";
 
 	const matrixNames = Object.keys(matrices) as (keyof typeof matrices)[];
 
+	// Get matrix from URL param, default to "A"
+	let selectedMatrix = $derived(
+		($page.url.searchParams.get("matrix") as MatrixName) || "A"
+	);
+
+	function handleTabChange(value: string) {
+		const url = new URL($page.url);
+		url.searchParams.set("matrix", value);
+		goto(url.toString(), { replaceState: true, noScroll: true });
+	}
+
 	function getMatrixMappings(matrix: Matrix) {
 		return Object.entries(matrix.mappings) as [string, Record<string, number | null>][];
+	}
+
+	// Story dialog state
+	const storyDialog = createStoryDialogState();
+
+	function handleStoryClick(storyNumber: number) {
+		storyDialog.openStory(storyNumber);
+	}
+
+	function handleDestinyStoryClick(storyNumber: number) {
+		storyDialog.openSingleStory(storyNumber);
 	}
 </script>
 
@@ -21,7 +47,7 @@
 		<h1 class="text-2xl font-bold md:text-3xl">Reaction Matrices</h1>
 	</div>
 
-	<Tabs.Root value="A" class="w-full">
+	<Tabs.Root value={selectedMatrix} onValueChange={handleTabChange} class="w-full">
 		<Tabs.List class="mb-8 flex h-auto flex-wrap gap-2 rounded-lg p-2">
 			{#each matrixNames as name (name)}
 				<Tabs.Trigger value={name} class="px-4 py-2">
@@ -61,7 +87,13 @@
 												{#if value === null}
 													<span class="text-muted-foreground">—</span>
 												{:else}
-													{value}
+													<button
+														type="button"
+														class="hover:bg-accent/50 cursor-pointer rounded px-2 py-1 transition-colors hover:underline"
+														onclick={() => handleStoryClick(value)}
+													>
+														{value}
+													</button>
 												{/if}
 											</td>
 										{/each}
@@ -75,3 +107,12 @@
 		{/each}
 	</Tabs.Root>
 </div>
+
+<StoryDialog
+	bind:open={storyDialog.open}
+	story={storyDialog.story}
+	previousStory={storyDialog.previousStory}
+	nextStory={storyDialog.nextStory}
+	showSingleStory={storyDialog.showSingleStory}
+	onStoryClick={handleDestinyStoryClick}
+/>

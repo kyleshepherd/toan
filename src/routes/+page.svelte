@@ -5,8 +5,10 @@
 	import * as ToggleGroup from "$lib/components/ui/toggle-group";
 	import { Button } from "$lib/components/ui/button";
 	import * as Table from "$lib/components/ui/table";
+	import StoryDialog from "$lib/components/StoryDialog.svelte";
 	import { getEncounter } from "$lib/data/encounters";
 	import { matrices, type MatrixName } from "$lib/data/matrices";
+	import { createStoryDialogState } from "$lib/stores/storyDialog.svelte";
 
 	let encounterCard = $state("");
 	let diceRoll = $state<string | undefined>(undefined);
@@ -26,6 +28,17 @@
 	} | null>(null);
 
 	let error = $state<string | null>(null);
+
+	// Story dialog state
+	const storyDialog = createStoryDialogState();
+
+	function handleStoryClick(storyNumber: number) {
+		storyDialog.openStory(storyNumber);
+	}
+
+	function handleDestinyStoryClick(storyNumber: number) {
+		storyDialog.openSingleStory(storyNumber);
+	}
 
 	function findMatchingDescription(
 		encounterName: string,
@@ -211,7 +224,13 @@
 										{#if row[action] === null}
 											<span class="text-muted-foreground">—</span>
 										{:else}
-											{row[action]}
+											<button
+												type="button"
+												class="hover:bg-accent/50 cursor-pointer rounded px-2 py-1 transition-colors hover:underline"
+												onclick={() => handleStoryClick(row[action]!)}
+											>
+												{row[action]}
+											</button>
 										{/if}
 									</Table.Cell>
 								{/each}
@@ -227,3 +246,12 @@
 		<Button variant="link" href="/reactions">View all reactions</Button>
 	</div>
 </div>
+
+<StoryDialog
+	bind:open={storyDialog.open}
+	story={storyDialog.story}
+	previousStory={storyDialog.previousStory}
+	nextStory={storyDialog.nextStory}
+	showSingleStory={storyDialog.showSingleStory}
+	onStoryClick={handleDestinyStoryClick}
+/>
