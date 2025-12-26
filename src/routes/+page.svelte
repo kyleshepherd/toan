@@ -106,15 +106,12 @@
 
 <div class="container mx-auto max-w-4xl space-y-6 p-4">
 	<header class="text-center">
-		<h1 class="text-3xl font-bold">Tales of the Arabian Nights</h1>
-		<p class="text-muted-foreground">Encounter Lookup</p>
+		<h1 class="text-2xl font-bold md:text-3xl">Encounter Lookup</h1>
+		<div class="divider-ornament mx-auto mt-3 max-w-xs">✦</div>
 	</header>
 
 	<Card.Root class="mx-auto max-w-md">
-		<Card.Header>
-			<Card.Title>Encounter Lookup</Card.Title>
-		</Card.Header>
-		<Card.Content class="space-y-4">
+		<Card.Content class="space-y-4 pt-6">
 			<div class="space-y-2">
 				<Label for="encounter-card"
 					>Encounter Card Number <span class="text-destructive">*</span></Label
@@ -240,11 +237,11 @@
 				</Table.Root>
 			</Card.Content>
 		</Card.Root>
+	{:else}
+		<p class="text-center text-sm text-muted-foreground">
+			Enter your encounter details above to see the reaction matrix
+		</p>
 	{/if}
-
-	<div class="text-center">
-		<Button variant="link" href="/reactions">View all reactions</Button>
-	</div>
 </div>
 
 <StoryDialog

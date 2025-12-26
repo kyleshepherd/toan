@@ -4,7 +4,6 @@
 	import { matrices, type Matrix, type MatrixName } from "$lib/data/matrices";
 	import * as Tabs from "$lib/components/ui/tabs";
 	import * as Card from "$lib/components/ui/card";
-	import { Button } from "$lib/components/ui/button";
 	import StoryDialog from "$lib/components/StoryDialog.svelte";
 	import { createStoryDialogState } from "$lib/stores/storyDialog.svelte";
 
@@ -40,10 +39,10 @@
 </svelte:head>
 
 <div class="container mx-auto space-y-6 px-4 py-6 md:py-8">
-	<div>
-		<Button variant="link" href="/" class="mb-2 px-0">&larr; Back to Encounter Lookup</Button>
+	<header class="text-center">
 		<h1 class="text-2xl font-bold md:text-3xl">Reaction Matrices</h1>
-	</div>
+		<div class="divider-ornament mx-auto mt-3 max-w-xs">✦</div>
+	</header>
 
 	<Tabs.Root value={selectedMatrix} onValueChange={handleTabChange} class="w-full">
 		<Tabs.List class="mb-8 flex h-auto flex-wrap gap-2 rounded-lg p-2">
