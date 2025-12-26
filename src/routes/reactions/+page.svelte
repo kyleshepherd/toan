@@ -38,9 +38,9 @@
 	<title>Reaction Matrices</title>
 </svelte:head>
 
-<div class="container mx-auto space-y-6 px-4 py-6 md:py-8">
+<div class="container mx-auto space-y-6 p-4">
 	<header class="text-center">
-		<h1 class="text-2xl font-bold md:text-3xl">Reaction Matrices</h1>
+		<h1 class="font-display text-2xl md:text-3xl">Reaction Matrices</h1>
 		<div class="divider-ornament mx-auto mt-3 max-w-xs">✦</div>
 	</header>
 
