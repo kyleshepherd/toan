@@ -11,9 +11,7 @@
 	const matrixNames = Object.keys(matrices) as (keyof typeof matrices)[];
 
 	// Get matrix from URL param, default to "A"
-	let selectedMatrix = $derived(
-		($page.url.searchParams.get("matrix") as MatrixName) || "A"
-	);
+	let selectedMatrix = $derived(($page.url.searchParams.get("matrix") as MatrixName) || "A");
 
 	function handleTabChange(value: string) {
 		const url = new URL($page.url);

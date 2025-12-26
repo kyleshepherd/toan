@@ -12,7 +12,7 @@
 		let result = html.replace(
 			/Matrix ([A-Z])\b/g,
 			(match, letter) =>
-				`<a href="${base}/reactions?matrix=${letter}" target="_blank" rel="noopener" class="text-primary hover:underline">${match}</a>`
+				`<a href="${base}/reactions?matrix=${letter}" target="_blank" rel="noopener" class="text-primary hover:underline">${match}</a>`,
 		);
 
 		// Make "Go to paragraph XXXX" clickable
@@ -20,7 +20,7 @@
 		result = result.replace(
 			/Go to paragraph (\d+)/g,
 			(match, num) =>
-				`<button type="button" data-story-link="${num}" class="text-primary hover:underline cursor-pointer">${match}</button>`
+				`<button type="button" data-story-link="${num}" class="text-primary hover:underline cursor-pointer">${match}</button>`,
 		);
 
 		return result;
@@ -32,7 +32,7 @@
 		const buttons = container.querySelectorAll<HTMLButtonElement>("[data-story-link]");
 		const handlers: Array<{ btn: HTMLButtonElement; handler: () => void }> = [];
 
-		buttons.forEach((btn) => {
+		buttons.forEach(btn => {
 			const storyNumber = parseInt(btn.dataset.storyLink!, 10);
 			if (!isNaN(storyNumber)) {
 				const handler = () => onStoryClick(storyNumber);
